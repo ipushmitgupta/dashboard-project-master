@@ -89,10 +89,8 @@ function App() {
       const response = await fetch(
         "https://aqm-service.vayuguard.com/sensor/get-indoor-data",
         {
-          mode: "no-cors",
           headers: {
             "Content-Type": "text/plain",
-            "Access-Control-Allow-Origin": "http://localhost:3000",
           },
         }
       ).then((res) => res.json());
