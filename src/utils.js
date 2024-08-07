@@ -217,7 +217,7 @@ export const rangeMapping = {
 };
 
 export const parameterType = {
-  sensor_id: { type: "percentage", limit: 100 },
+  humidity: { type: "percentage", limit: 100 },
   temp: { type: "number", limit: 100 },
   pm2: { type: "number", limit: 500 },
   pm10: { type: "number", limit: 500 },
@@ -258,8 +258,8 @@ export const DIFFERENT_PARAMETERS = {
   ],
   col3: [
     {
-      name: "Humanity",
-      key: "sensor_id",
+      name: "Humidity",
+      key: "humidity",
       unit: "%",
     },
     {

@@ -149,31 +149,31 @@ function App() {
     const { color, value } = getRandomValue(key, isRandom);
     return (
       <Box sx={{ width: "100%" }}>
-        <Typography
-          sx={{
+          <Typography
+            sx={{
             textAlign: "center",
-            color: "#4582f8",
-            fontSize: "1.5rem",
-            fontWeight: 600,
-            textTransform: "capitalize",
-          }}
-        >
-          {name}
-        </Typography>
+              color: "#4582f8",
+              fontSize: "1.5rem",
+              fontWeight: 600,
+              textTransform: "capitalize",
+            }}
+          >
+            {name}
+          </Typography>
 
-        <Box
-          sx={{
+          <Box
+            sx={{
             width: "7vw",
             height: "7vw",
-            borderRadius: "50%",
+              borderRadius: "50%",
             border: `12px solid ${color}`,
-            display: "flex",
+              display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            boxShadow:
-              " 2px 2px 2px rgba(0, 0, 0, 0.1),4px 4px 4px rgba(0, 0, 0, 0.2), 6px 6px 6px #cbd0d5;",
-          }}
-        >
+              boxShadow:
+                " 2px 2px 2px rgba(0, 0, 0, 0.1),4px 4px 4px rgba(0, 0, 0, 0.2), 6px 6px 6px #cbd0d5;",
+            }}
+          >
           <Box>
             <Typography
               sx={{
@@ -183,28 +183,28 @@ function App() {
                 clear: "both",
               }}
             >
-              {value}
-            </Typography>
-            <Typography
+                {value}
+              </Typography>
+              <Typography
               sx={{
                 textAlign: "center",
                 fontSize: "1rem",
                 fontWeight: 600,
                 clear: "both",
               }}
-            >
-              {unit}
-            </Typography>
+              >
+                {unit}
+              </Typography>
+            </Box>
           </Box>
         </Box>
-      </Box>
     );
   };
 
   return (
     <Box sx={{ width: "100%", height: "100vh", clear: "both" }}>
       <Grid container spacing={2} sx={{ height: "100%" }}>
-        <Grid item xs={5}>
+      <Grid item xs={5}>
           <Box
             sx={{
               width: "100%",
@@ -217,7 +217,7 @@ function App() {
               <Box>
                 {" "}
                 <img width={70} src={dflLogo} alt="logo"></img>
-              </Box>
+            </Box>
               <Typography
                 sx={{
                   textAlign: "center",
@@ -241,26 +241,26 @@ function App() {
                   alignItems: "center",
                 }}
               >
-                {Object.values(DIFFERENT_PARAMETERS).map((col) => (
-                  <Box
+          {Object.values(DIFFERENT_PARAMETERS).map((col) => (
+                <Box
                     sx={{
                       display: "flex",
                       flexDirection: "column",
                       gap: "30px",
                       mx: "25px",
                     }}
-                  >
-                    {col.map((parameter) => (
-                      <CircleComponenet
-                        data={{
-                          name: parameter.name,
-                          key: parameter.key,
-                          unit: parameter.unit,
-                          isRandom: false,
-                        }}
-                      />
-                    ))}
-                  </Box>
+                >
+                  {col.map((parameter) => (
+                    <CircleComponenet
+                      data={{
+                        name: parameter.name,
+                        key: parameter.key,
+                        unit: parameter.unit,
+                        isRandom: false,
+                      }}
+                    />
+                  ))}
+                </Box>
                 ))}
               </Box>
             </Box>
@@ -291,14 +291,14 @@ function App() {
             </Box>
 
             <Box sx={{ width: "100%", flex: "1 1 0" }}>
-              <Box
-                sx={{
+                <Box
+                  sx={{
                   width: "100%",
                   height: "100%",
-                  display: "flex",
+                    display: "flex",
                   flexDirection: "column",
-                }}
-              >
+                  }}
+                >
                 {AQI_MAPPING.map((item) => (
                   <Box
                     sx={{
@@ -334,21 +334,21 @@ function App() {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                        fontSize: "16px",
-                        color: "white",
-                        fontWeight: 600,
-                      }}
-                    >
-                      {item.name}
-                    </Box>
+                      fontSize: "16px",
+                      color: "white",
+                      fontWeight: 600,
+                    }}
+                  >
+                    {item.name}
+                  </Box>
                   </Box>
                 ))}
               </Box>
-            </Box>
           </Box>
-        </Grid>
+        </Box>
+      </Grid>
 
-        <Grid item xs={5}>
+      <Grid item xs={5}>
           <Box
             sx={{
               width: "100%",
@@ -361,7 +361,7 @@ function App() {
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 {" "}
                 <img width={80} src={vrLogo} alt="logo"></img>
-              </Box>
+            </Box>
               <Typography
                 sx={{
                   textAlign: "center",
@@ -385,26 +385,26 @@ function App() {
                   alignItems: "center",
                 }}
               >
-                {Object.values(DIFFERENT_PARAMETERS).map((col) => (
-                  <Box
+          {Object.values(DIFFERENT_PARAMETERS).map((col) => (
+                <Box
                     sx={{
                       display: "flex",
                       flexDirection: "column",
                       gap: "30px",
                       mx: "25px",
                     }}
-                  >
-                    {col.map((parameter) => (
-                      <CircleComponenet
-                        data={{
-                          name: parameter.name,
-                          key: parameter.key,
-                          unit: parameter.unit,
-                          isRandom: true,
-                        }}
-                      />
-                    ))}
-                  </Box>
+                >
+                  {col.map((parameter) => (
+                    <CircleComponenet
+                      data={{
+                        name: parameter.name,
+                        key: parameter.key,
+                        unit: parameter.unit,
+                        isRandom: true,
+                      }}
+                    />
+                  ))}
+                </Box>
                 ))}
               </Box>
             </Box>
