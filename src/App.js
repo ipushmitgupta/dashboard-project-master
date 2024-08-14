@@ -29,10 +29,8 @@ const defaultdata = {
 function App() {
   const [values, setValues] = useState(0);
   const [values2, setValues2] = useState(0);
-  const [data, setData] = useState({
-    inSide: defaultdata,
-    outSide: defaultdata,
-  });
+  const [outSide, setOutSide] = useState(defaultdata);
+  const [inSide, setInSide] = useState(defaultdata);
 
   // function generateRandomValue(limit) {
   //   let randomValue = Math.random() * limit;
@@ -46,9 +44,7 @@ function App() {
       switch (type) {
         case "percentage":
         case "number":
-          const value = isRandom
-            ? data.outSide[parameter]
-            : data.inSide[parameter];
+          const value = isRandom ? outSide[parameter] : inSide[parameter];
           const matchedParameter = rangeMapping[parameter]?.find(
             (item) => value >= item.min && value <= item.max
           );
@@ -56,7 +52,6 @@ function App() {
           const color = matchedParameter?.color
             ? matchedParameter?.color
             : "#90be6d";
-
           return { color, value };
 
         default:
@@ -107,21 +102,16 @@ function App() {
       ...outsideSensor.stations[0],
       ...outsideWeather.data,
     };
-    console.log(data);
-    setData({
-      inSide: data.inSide,
-      outSide: {
-        //doing it manually because the keys already defined and the data retrieve from api are different
-        co: combineData.CO,
-        ozone: combineData.OZONE,
-        humidity: combineData.humidity,
-        pm2: combineData.PM25,
-        pm10: combineData.PM10,
-        temp: combineData.apparentTemperature,
-        no2: combineData.NO2,
-      },
+    setOutSide({
+      //doing it manually because the keys already defined and the data retrieve from api are different
+      co: combineData.CO,
+      ozone: combineData.OZONE,
+      humidity: combineData.humidity,
+      pm2: combineData.PM25,
+      pm10: combineData.PM10,
+      temp: (((combineData.apparentTemperature - 32) * 5) / 9).toFixed(1),
+      no2: combineData.NO2,
     });
-    console.log(combineData);
   };
   useEffect(() => {
     loadPage();
@@ -135,7 +125,7 @@ function App() {
   const loadPage = async () => {
     // const outSide = outSideData();
     const updatedData = {
-      outSide: data.outSide,
+      outSide: outSide,
       inSide: defaultdata,
     };
 
@@ -152,9 +142,9 @@ function App() {
       if (response.success) {
         updatedData.inSide = response.data;
       }
-      setData(updatedData);
+      setInSide(response.data);
     } catch (error) {
-      setData(updatedData);
+      setInSide(updatedData.inSide);
     }
   };
 
@@ -163,7 +153,7 @@ function App() {
       setValues((prev) => prev + 1);
     }, 30000);
 
-    outSideData(); //initializing data at the time of rendering
+    // outSideData(); //initializing data at the time of rendering
     const interval2 = setInterval(() => {
       //interval to update outside data every 30  min
       setValues2((prev) => prev + 1);
@@ -178,32 +168,32 @@ function App() {
   const arrowSelected = useMemo(() => {
     const result = { insideAir: "", outSideAir: "" };
 
-    if (data.inSide.pm10 > data.inSide.pm2) {
+    if (inSide.pm10 > inSide.pm2) {
       const matchedParameter = rangeMapping.pm10?.find(
-        (item) => data.inSide.pm10 >= item.min && data.inSide.pm10 <= item.max
+        (item) => inSide.pm10 >= item.min && inSide.pm10 <= item.max
       );
       result.insideAir = matchedParameter.color;
     } else {
       const matchedParameter = rangeMapping.pm2?.find(
-        (item) => data.inSide.pm2 >= item.min && data.inSide.pm2 <= item.max
+        (item) => inSide.pm2 >= item.min && inSide.pm2 <= item.max
       );
       result.insideAir = matchedParameter.color;
     }
 
-    if (data.outSide.pm10 >= data.outSide.pm2) {
+    if (outSide.pm10 >= outSide.pm2) {
       const matchedParameter = rangeMapping.pm10?.find(
-        (item) => data.outSide.pm10 >= item.min && data.outSide.pm10 <= item.max
+        (item) => outSide.pm10 >= item.min && outSide.pm10 <= item.max
       );
       result.outSideAir = matchedParameter.color;
     } else {
       const matchedParameter = rangeMapping.pm2?.find(
-        (item) => data.outSide.pm2 >= item.min && data.outSide.pm2 <= item.max
+        (item) => outSide.pm2 >= item.min && outSide.pm2 <= item.max
       );
       result.outSideAir = matchedParameter?.color || "";
     }
 
     return result;
-  }, [data]);
+  }, [inSide, outSide]);
 
   const CircleComponenet = ({ data }) => {
     const { name, key, unit, isRandom } = data;
