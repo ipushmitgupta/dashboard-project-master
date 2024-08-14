@@ -214,6 +214,27 @@ export const rangeMapping = {
       color: "#472d30",
     },
   ],
+  co: [
+    {
+      min: 0,
+      max: 9999,
+      color: "427d30",
+    },
+  ],
+  ozone: [
+    {
+      min: 0,
+      max: 9999,
+      color: "427d30",
+    },
+  ],
+  no2: [
+    {
+      min: 0,
+      max: 9999,
+      color: "427d30",
+    },
+  ],
 };
 
 export const parameterType = {
@@ -224,6 +245,54 @@ export const parameterType = {
   co2: { type: "number", limit: 2500 - 400 + 400 },
   tvoc: { type: "number", limit: 0.1 },
   hcho: { type: "number", limit: 0.1 },
+  co: { type: "number", limit: 0.1 },
+  ozone: { type: "number", limit: 0.1 },
+  no2: { type: "number", limit: 0.1 },
+};
+
+export const OUTDOOR_DIFFERENT_PARAMETERS = {
+  // created new constant as the names and keys are different form inside one
+  col1: [
+    {
+      name: "PM 2.5",
+      key: "pm2",
+      unit: "µg/m3",
+    },
+    {
+      name: "PM 10",
+      key: "pm10",
+      unit: "µg/m3",
+    },
+  ],
+  col2: [
+    {
+      name: "No2",
+      key: "no2",
+      unit: "ppb",
+    },
+    {
+      name: "Ozone",
+      key: "ozone",
+      unit: "mg/m3",
+    },
+    {
+      name: "Co",
+      key: "co",
+      unit: "ppm",
+    },
+  ],
+  col3: [
+    {
+      name: "Humidity",
+      key: "humidity",
+      unit: "%",
+    },
+    {
+      name: "Temp",
+      key: "temp",
+      unit: "°C",
+    },
+  ],
 };
 
 export const DIFFERENT_PARAMETERS = {
