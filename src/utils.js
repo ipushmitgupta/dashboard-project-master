@@ -218,21 +218,21 @@ export const rangeMapping = {
     {
       min: 0,
       max: 9999,
-      color: "427d30",
+      color: "#427f30",
     },
   ],
   ozone: [
     {
       min: 0,
       max: 9999,
-      color: "427d30",
+      color: "#4a7d30",
     },
   ],
   no2: [
     {
       min: 0,
       max: 9999,
-      color: "427d30",
+      color: "#427df0",
     },
   ],
 };
@@ -273,7 +273,7 @@ export const OUTDOOR_DIFFERENT_PARAMETERS = {
     {
       name: "Ozone",
       key: "ozone",
-      unit: "mg/m3",
+      unit: "ppb",
     },
     {
       name: "Co",
